@@ -1,0 +1,6 @@
+async:
+  name1:
+    corePoolSize: 10
+    maxPoolSize: 200
+    queueCapacity: 0
+
