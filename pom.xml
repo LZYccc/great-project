@@ -37,36 +37,71 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.jasig.cas.client</groupId>
+      <artifactId>cas-client-core</artifactId>
+      <version>3.3.3</version>
+    </dependency>
   </dependencies>
 
-  <reporting>
+  <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-linkcheck-plugin</artifactId>
-        <version>1.2</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <excludedLinks>
-            <excludedLink>**/archetype/*</excludedLink>
-            <excludedLink>**/ant-tasks/*</excludedLink>
-            <excludedLink>**/doxia/*</excludedLink>
-            <excludedLink>**/jxr/*</excludedLink>
-            <excludedLink>**/maven-1.x/*</excludedLink>
-            <excludedLink>**/mercury/*</excludedLink>
-            <excludedLink>**/scm/*</excludedLink>
-            <excludedLink>**/shared/*</excludedLink>
-            <excludedLink>**/skins/*</excludedLink>
-            <excludedLink>**/surefire/*</excludedLink>
-            <excludedLink>**/wagon/*</excludedLink>
-            <excludedLink>**/plugins/maven-*</excludedLink>
-            <excludedLink>**/ref/*</excludedLink>
-            <excludedLink>**/maven-model/*</excludedLink>
-            <excludedLink>**/maven-settings/*</excludedLink>
-            <excludedLink>irc://*</excludedLink>
-          </excludedLinks>
+          <includeSystemScope>true</includeSystemScope>
+        </configuration>
+      </plugin>
+
+      <!--指定JDK编译版本 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <!-- 打包跳过测试 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+      <!-- 避免font文件的二进制文件格式压缩破坏 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+            <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+            <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+            <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+            <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
         </configuration>
       </plugin>
     </plugins>
-  </reporting>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.json</include>
+          <include>**/*.ftl</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 
 </project>
