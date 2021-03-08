@@ -72,7 +72,6 @@
     <orderEntry type="library" name="Maven: org.apache.santuario:xmlsec:1.4.4" level="project" />
     <orderEntry type="library" name="Maven: ca.juliusdavies:not-yet-commons-ssl:0.3.9" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
     <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.1" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.1" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.1" level="project" />
@@ -84,5 +83,10 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: xalan:xalan:2.7.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: xalan:serializer:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.68" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.12" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.11" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
   </component>
 </module>

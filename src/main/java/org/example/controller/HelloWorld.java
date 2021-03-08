@@ -1,13 +1,16 @@
 package org.example.controller;
 
 import org.example.service.TestService;
+import org.example.utils.ApiUtils;
 import org.example.utils.SpringContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -19,14 +22,20 @@ import java.util.Map;
 
 @RestController
 public class HelloWorld {
+
+    @Value("${file.path}")
+    private String filePath;
+
+
     @Autowired
     private TestService testService;
 
     private static FileOutputStream fileOutputStream;
 
-    static {
+    @PostConstruct
+    public void init(){
         try {
-            fileOutputStream = new FileOutputStream(new File("/logs/a.txt"));
+            fileOutputStream = new FileOutputStream(new File(filePath));
         }catch (Exception e){
 
         }
@@ -42,6 +51,16 @@ public class HelloWorld {
 
       return map;
   }
+
+    @RequestMapping("api/testInternet")
+    Map<String,String> testInternet() throws Exception {
+        Map<String,String> map = new HashMap<>();
+        map.put("result","create by lizhangyu！");
+        map.put("testResult",ApiUtils.appSign());
+        return map;
+    }
+
+
     @RequestMapping("asyncMath1")
     Map<String,String> asyncMath1(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
